@@ -4,8 +4,10 @@ import {
   Text,
   View,
   ScrollView,
-  Button
+  TouchableOpacity
 } from 'react-native';
+
+import FloatAdd from '../component/FloatingAdd';
 
 type Props = {};
 export default class ViewMatkul extends Component<Props> {
@@ -27,7 +29,50 @@ export default class ViewMatkul extends Component<Props> {
           <Text style={styles.instructions}>
             Disini adalah data-data list harga smartphone
           </Text>
+          <Text style={styles.welcome}>
+            Selamat Datang di API List Harga Smartphone
+          </Text>
+          <Text style={styles.instructions}>
+            Disini adalah data-data list harga smartphone
+          </Text>
+          <Text style={styles.welcome}>
+            Selamat Datang di API List Harga Smartphone
+          </Text>
+          <Text style={styles.instructions}>
+            Disini adalah data-data list harga smartphone
+          </Text>
+          <Text style={styles.welcome}>
+            Selamat Datang di API List Harga Smartphone
+          </Text>
+          <Text style={styles.instructions}>
+            Disini adalah data-data list harga smartphone
+          </Text>
+          <Text style={styles.welcome}>
+            Selamat Datang di API List Harga Smartphone
+          </Text>
+          <Text style={styles.instructions}>
+            Disini adalah data-data list harga smartphone
+          </Text>
+          <Text style={styles.welcome}>
+            Selamat Datang di API List Harga Smartphone
+          </Text>
+          <Text style={styles.instructions}>
+            Disini adalah data-data list harga smartphone
+          </Text>
+          <Text style={styles.welcome}>
+            Selamat Datang di API List Harga Smartphone
+          </Text>
+          <Text style={styles.instructions}>
+            Disini adalah data-data list harga smartphone
+          </Text>
+          <Text style={styles.welcome}>
+            Selamat Datang di API List Harga Smartphone
+          </Text>
+          <Text style={styles.instructions}>
+            Disini adalah data-data list harga smartphone
+          </Text>
         </ScrollView>
+        <FloatAdd />
       </View>
     );
   }
@@ -48,4 +93,5 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+
 });

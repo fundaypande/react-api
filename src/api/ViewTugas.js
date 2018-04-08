@@ -7,6 +7,8 @@ import {
   TextInput
 } from 'react-native';
 
+import FloatAdd from '../component/FloatingAdd';
+
 type Props = {};
 export default class ViewTugas extends Component<Props> {
   saveData = () => {
@@ -34,6 +36,7 @@ export default class ViewTugas extends Component<Props> {
             keyboardType='numeric'
           />
         </ScrollView>
+        <FloatAdd />
       </View>
     );
   }

@@ -5,6 +5,7 @@ import {
   View,
   ScrollView,
 } from 'react-native';
+import FloatAdd from '../component/FloatingAdd';
 
 type Props = {};
 export default class ViewDosen extends Component<Props> {
@@ -23,6 +24,7 @@ export default class ViewDosen extends Component<Props> {
             Data Dosen
           </Text>
         </ScrollView>
+        <FloatAdd />
       </View>
     );
   }
