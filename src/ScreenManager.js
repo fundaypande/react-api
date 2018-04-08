@@ -5,10 +5,18 @@ import SignUp from './auth/Signup';
 import Dashboard from './view/Dashboard';
 import MyTab from './TabManager';
 import Sidebar from './Sidebar.js';
+import AddDosen from './api/dosen/AddDosen';
+import ViewDosen from './api/ViewDosen';
 
 const Screens = DrawerNavigator({
   Login: {
     screen: Login
+  },
+  AddDosen: {
+    screen: AddDosen
+  },
+  ViewDosen: {
+    screen: ViewDosen
   },
   SignUp: {
     screen: SignUp
@@ -19,7 +27,6 @@ const Screens = DrawerNavigator({
   MyTab: {
     screen: MyTab
   },
-
 },
   {
     contentComponent: props => <Sidebar {...props} />

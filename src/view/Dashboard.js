@@ -5,7 +5,8 @@ import {
   StyleSheet,
   StatusBar,
   ScrollView,
-  Text
+  Text,
+  Alert
  } from 'react-native';
 
 import HeaderKu from '../component/Header';
@@ -20,6 +21,18 @@ export default class Login extends Component {
 
   togleDrawer = () => {
     this.props.navigation.navigate('DrawerToggle');
+  }
+  addData = () => {
+    Alert.alert(
+  'Tambah Data',
+  '',
+      [
+        { text: 'Tugas', onPress: () => console.log('Ask me later pressed') },
+        { text: 'Mata Kuliah', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+        { text: 'Dosen', onPress: () => this.props.navigation.navigate('AddDosen') },
+      ],
+      { cancelable: true }
+    );
   }
 
   render() {
@@ -36,8 +49,9 @@ export default class Login extends Component {
         <View style={{ flex: 1 }}>
         <HeaderKu
           iconLeft='ios-menu'
-          iconRight='ios-refresh'
+          iconRight='ios-add'
           onPressLeft={this.togleDrawer}
+          onPressRight={this.addData}
           title='halooohaaa'
         />
         </View>

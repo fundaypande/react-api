@@ -33,7 +33,7 @@ export default class Sidebar extends React.Component {
               );
             }}
           />
-          <TouchableOpacity style={{ padding: 10, marginLeft: 10, marginTop: 5 }}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('AddDosen')} style={{ padding: 10, marginLeft: 10, marginTop: 5 }}>
             <Text>Log Out</Text>
           </TouchableOpacity>
 

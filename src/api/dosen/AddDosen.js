@@ -4,37 +4,42 @@ import {
   Text,
   View,
   ScrollView,
-  Alert
+  StatusBar
 } from 'react-native';
-import FloatAdd from '../component/FloatingAdd';
+
+import FloatAdd from '../../component/FloatingAdd';
+import HeaderAdd from '../../component/HeaderAdd';
 
 type Props = {};
-
-export default class ViewDosen extends Component<Props> {
-  constructor(props) {
-      super(props);
-      this.navigate = this.props.navigation.navigate;
-    }
-
+export default class AddDosen extends Component<Props> {
   saveData = () => {
-    this.props.navigation.navigate('Logout');
+    this.props.navigation.navigate('ListApi');
   };
   goBack = () => {
-    this.props.navigation.goBack();
-  };
-  toAddDosen = () => {
     this.props.navigation.goBack();
   };
 
   render() {
     return (
       <View style={styles.container}>
+      <StatusBar
+          backgroundColor={'transparent'}
+          translucent
+      />
+        <View style={{ flex: 1 }}>
+        <HeaderAdd
+          iconLeft='ios-menu'
+          iconRight='ios-refresh'
+          onPressLeft={this.togleDrawer}
+          title='halooohaaa'
+        />
+        </View>
         <ScrollView>
           <Text style={styles.welcome}>
-            Data Dosen
+            Tambah Dosen
           </Text>
         </ScrollView>
-        <FloatAdd onPress={this.saveData} />
+        <FloatAdd />
       </View>
     );
   }
