@@ -6,11 +6,9 @@ import {
   ScrollView,
   TextInput
 } from 'react-native';
-import Header from '../component/Header';
-import Footer from '../component/Footer';
 
 type Props = {};
-export default class ListApi extends Component<Props> {
+export default class ViewTugas extends Component<Props> {
   saveData = () => {
     this.props.navigation.navigate('ListApi');
   };
@@ -21,7 +19,6 @@ export default class ListApi extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-      <Header title='Tambah Data' icon='ios-arrow-round-back' onPress={this.goBack} />
         <ScrollView>
           <Text style={styles.welcome}>
             Tambah Data Smartphone
@@ -37,7 +34,6 @@ export default class ListApi extends Component<Props> {
             keyboardType='numeric'
           />
         </ScrollView>
-      <Footer onPress={this.saveData} title='Simpan' icon='ios-checkmark-circle' />
       </View>
     );
   }

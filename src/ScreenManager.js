@@ -1,19 +1,29 @@
+import React, { Component } from 'react';
 import { DrawerNavigator } from 'react-navigation';
-import HomeScreen from './HomeScreen';
-import ListApi from './api/ListApi';
-import AddData from './api/AddData';
+import Login from './auth/Login';
+import SignUp from './auth/Signup';
+import Dashboard from './view/Dashboard';
+import MyTab from './TabManager';
+import Sidebar from './Sidebar.js';
 
 const Screens = DrawerNavigator({
-  HomeScreen: {
-    screen: HomeScreen
+  Login: {
+    screen: Login
   },
-  ListApi: {
-    screen: ListApi
+  SignUp: {
+    screen: SignUp
   },
-  AddData: {
-    screen: AddData
+  Dashboard: {
+    screen: Dashboard
   },
-}
+  MyTab: {
+    screen: MyTab
+  },
+
+},
+  {
+    contentComponent: props => <Sidebar {...props} />
+  }
 );
 
 export default Screens;

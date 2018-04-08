@@ -6,11 +6,9 @@ import {
   ScrollView,
   Button
 } from 'react-native';
-import Header from '../component/Header';
-import Footer from '../component/Footer';
 
 type Props = {};
-export default class ListApi extends Component<Props> {
+export default class ViewMatkul extends Component<Props> {
   addData = () => {
     this.props.navigation.navigate('AddData');
   };
@@ -22,7 +20,6 @@ export default class ListApi extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-      <Header title='List API' icon='ios-arrow-round-back' onPress={this.goBack} />
         <ScrollView>
           <Text style={styles.welcome}>
             Selamat Datang di API List Harga Smartphone
@@ -31,7 +28,6 @@ export default class ListApi extends Component<Props> {
             Disini adalah data-data list harga smartphone
           </Text>
         </ScrollView>
-      <Footer onPress={this.addData} title='Tambah' icon='ios-add-circle' />
       </View>
     );
   }
