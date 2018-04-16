@@ -32,11 +32,11 @@ export default class AddDosen extends Component<Props> {
         'Content-Type': 'aplication/json'
       },
       body: JSON.stringify({
-        namadosen: dosen
+        nama: dosen
       })
     }).then((response) => response.json())
       .then((responseJson) => {
-        Alert.alert(responseJson.msg);
+        Alert.alert(responseJson);
       }).catch((error) => {
         console.error(error);
         Alert.alert('errrorrr');

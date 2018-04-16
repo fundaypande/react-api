@@ -4,7 +4,8 @@ import {
   Text,
   View,
   ScrollView,
-  StatusBar
+  StatusBar,
+  Alert
 } from 'react-native';
 import { Card, CardItem, Body } from 'native-base';
 
@@ -14,12 +15,49 @@ import HeaderAdd from '../../component/HeaderAdd';
 
 type Props = {};
 export default class AddDosen extends Component<Props> {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      nama: '',
+      sks: '',
+      jadwal: '',
+      dosen: '',
+    };
+  }
+
   saveData = () => {
     this.props.navigation.navigate('ListApi');
   };
   goBack = () => {
     this.props.navigation.navigate('Dashboard');
   };
+
+  InputMatkul = () => {
+    const nama = this.state.nama;
+    const sks = this.state.sks;
+    const jadwal = this.state.jadwal;
+    const dosen = 'dosen';
+    fetch('http://api.ifreethink.net/fundaypande/insertMatkul.php', {
+      method: 'POST',
+      header: {
+        'Accept': 'application/json',
+        'Content-Type': 'aplication/json'
+      },
+      body: JSON.stringify({
+        nama: nama,
+        sks: sks,
+        jadwal: jadwal,
+        dosen: dosen
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        Alert.alert(responseJson);
+      }).catch((error) => {
+        console.error(error);
+        Alert.alert('errrorrr');
+      })
+  }
 
   render() {
     return (
@@ -47,21 +85,24 @@ export default class AddDosen extends Component<Props> {
                 <IconField
                   icon='ios-document'
                   placeholder='Nama Matakuliah'
+                  onChangeText={TextInputValue => this.setState({ nama: TextInputValue })}
                 />
                 <IconField
                   icon='ios-time'
                   placeholder='SKS'
+                  onChangeText={TextInputValue => this.setState({ sks: TextInputValue })}
                 />
                 <IconField
                   icon='ios-calendar'
                   placeholder='Hari'
+                  onChangeText={TextInputValue => this.setState({ jadwal: TextInputValue })}
                 />
               </Body>
             </CardItem>
           </Card>
           </View>
         </ScrollView>
-        <FloatAdd icon='ios-paper-plane' />
+        <FloatAdd icon='ios-paper-plane' onPress={this.InputMatkul} />
       </View>
     );
   }
