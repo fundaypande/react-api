@@ -1,8 +1,17 @@
 import React from 'react';
 import { AppRegistry, Image, StatusBar, ImageBackground, TouchableOpacity } from 'react-native';
 import { Container, Content, Text, List, ListItem } from 'native-base';
+import * as firebase from 'firebase';
+
 const routes = ['Profile', 'Logout'];
+
 export default class Sidebar extends React.Component {
+
+  logOut = () => {
+    firebase.auth().signOut();
+    this.props.navigation.navigate('Login');
+  }
+
   render() {
     return (
       <Container>
@@ -33,7 +42,10 @@ export default class Sidebar extends React.Component {
               );
             }}
           />
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('AddDosen')} style={{ padding: 10, marginLeft: 10, marginTop: 5 }}>
+          <TouchableOpacity
+            onPress={this.logOut}
+            style={{ padding: 10, marginLeft: 10, marginTop: 5 }}
+          >
             <Text>Log Out</Text>
           </TouchableOpacity>
 

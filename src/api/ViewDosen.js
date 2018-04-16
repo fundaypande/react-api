@@ -4,17 +4,53 @@ import {
   Text,
   View,
   ScrollView,
-  Alert
+  ListView
 } from 'react-native';
+import { Card, CardItem, Body, Icon } from 'native-base';
 import FloatAdd from '../component/FloatingAdd';
 
 type Props = {};
 
 export default class ViewDosen extends Component<Props> {
-  constructor(props) {
-      super(props);
-      this.navigate = this.props.navigation.navigate;
-    }
+  constructor() {
+    super();
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    this.state = {
+      dataSource: ds,
+    };
+  }
+
+  componentDidMount() {
+    this.getType()
+  }
+
+  getType() {
+    fetch('http://api.ifreethink.net/fundaypande/getDosen.php')
+    .then((response) => response.json())
+    .then((response) => {
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(response)
+        });
+    });
+  }
+
+  renderRow(os) {
+     return (
+       <Card>
+         <CardItem>
+           <Body>
+              <View style={styles.card}>
+               <Icon
+                 name={'ios-person'}
+                 style={styles.icon}
+               />
+               <Text style={{ flex: 5 }}> {os.nama} </Text>
+             </View>
+           </Body>
+         </CardItem>
+       </Card>
+     );
+  }
 
   saveData = () => {
     this.props.navigation.navigate('Logout');
@@ -30,20 +66,32 @@ export default class ViewDosen extends Component<Props> {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Text style={styles.welcome}>
-            Data Dosen
-          </Text>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderRow.bind(this)}
+        />
         </ScrollView>
-        <FloatAdd onPress={this.saveData} />
+        <FloatAdd icon='ios-add' onPress={this.saveData} />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  card: {
+    flex: 1, flexDirection: 'row', alignSelf: 'center', alignItems: 'center'
+  },
+  icon: {
+    flex: 1,
+    fontSize: 30,
+    color: '#34322F',
+    marginLeft: 10,
+    alignSelf: 'center',
+    alignItems: 'center'
+  },
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#F0F0F0',
   },
   welcome: {
     fontSize: 20,

@@ -36,15 +36,14 @@ const styles = {
   contHeader: {
     backgroundColor: 'transparent',
     justifyContent: 'flex-start',
-    paddingTop: 10,
+    paddingTop: 15,
     paddingLeft: 10,
     height: 50,
     flexDirection: 'row',
     alignItems: 'center'
   },
   header: {
-    flex: 1,
-    height: 100,
+    height: 80,
     alignSelf: 'stretch',
     backgroundColor: '#F5FCFF',
     elevation: 7
@@ -54,7 +53,7 @@ const styles = {
     alignSelf: 'stretch',
   },
   viewSpace: {
-    height: 10
+    height: 15
   },
   textHeader: {
     color: '#ffffff',

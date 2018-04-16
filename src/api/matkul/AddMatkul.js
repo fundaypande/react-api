@@ -4,8 +4,7 @@ import {
   Text,
   View,
   ScrollView,
-  StatusBar,
-  Alert
+  StatusBar
 } from 'react-native';
 import { Card, CardItem, Body } from 'native-base';
 
@@ -15,34 +14,6 @@ import HeaderAdd from '../../component/HeaderAdd';
 
 type Props = {};
 export default class AddDosen extends Component<Props> {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      dosen: '',
-    };
-  }
-
-  InputDosen = () => {
-    const { dosen } = this.state;
-    fetch('http://api.ifreethink.net/fundaypande/insertDosen.php', {
-      method: 'POST',
-      header: {
-        'Accept': 'application/json',
-        'Content-Type': 'aplication/json'
-      },
-      body: JSON.stringify({
-        namadosen: dosen
-      })
-    }).then((response) => response.json())
-      .then((responseJson) => {
-        Alert.alert(responseJson.msg);
-      }).catch((error) => {
-        console.error(error);
-        Alert.alert('errrorrr');
-      })
-  }
-
   saveData = () => {
     this.props.navigation.navigate('ListApi');
   };
@@ -62,7 +33,7 @@ export default class AddDosen extends Component<Props> {
           iconLeft='ios-arrow-round-back'
           iconRight='ios-refresh'
           onPressLeft={this.goBack}
-          title='Tambah Data Dosen'
+          title='Tambah Data Mata Kuliah'
         />
         </View>
         <ScrollView>
@@ -71,22 +42,26 @@ export default class AddDosen extends Component<Props> {
             <CardItem>
               <Body>
                 <Text>
-                   Tambah Data Dosen
+                   Tambah Data Mata Kuliah
                 </Text>
                 <IconField
-                  icon='ios-person'
-                  placeholder='Nama Dosen'
-                  onChangeText={TextInputValue => this.setState({ dosen: TextInputValue })}
+                  icon='ios-document'
+                  placeholder='Nama Matakuliah'
+                />
+                <IconField
+                  icon='ios-time'
+                  placeholder='SKS'
+                />
+                <IconField
+                  icon='ios-calendar'
+                  placeholder='Hari'
                 />
               </Body>
             </CardItem>
           </Card>
           </View>
         </ScrollView>
-        <FloatAdd
-          icon='ios-paper-plane'
-          onPress={this.InputDosen}
-        />
+        <FloatAdd icon='ios-paper-plane' />
       </View>
     );
   }
@@ -97,6 +72,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F0F0F0',
   },
-  body: {
-  }
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
 });

@@ -13,18 +13,45 @@ import {
  } from 'react-native';
  import { Button } from 'native-base';
 
-export default class Login extends Component {
+ import * as firebase from 'firebase';
+ import config from '../Firebase';
 
+export default class Login extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      city: ''
+      username: '',
+      password: ''
     };
+
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+      if (firebaseUser) {
+        this.props.navigation.navigate('Dashboard');
+      } else {
+        Alert.alert('Your not Login');
+      }
+    });
   }
 
   onPressButton = () => {
     Alert.alert('Kepencet');
+  }
+
+  createUser = () => {
+    const username = this.state.username;
+    const password = this.state.password;
+    const auth = firebase.auth();
+    //Alert.alert(username, password);
+
+    const promise = auth.createUserWithEmailAndPassword(username, password);
+    promise.catch(e => {
+      if (e) {
+        Alert.alert(e.code, e.message);
+      } else {
+        this.props.navigation.navigate('Dashboard');
+      }
+    });
   }
 
   render() {
@@ -57,19 +84,21 @@ export default class Login extends Component {
               underlineColorAndroid="transparent"
               style={myButton('rgba(255,255,255,0.5)')}
               placeholder="Username"
+              onChangeText={TextInputValue => this.setState({ username: TextInputValue })}
             />
             <TextInput
               underlineColorAndroid="transparent"
               style={myButton('rgba(255,255,255,0.5)')}
               placeholder="Password"
               secureTextEntry
+              onChangeText={TextInputValue => this.setState({ password: TextInputValue })}
             />
             <View style={{ height: 60 }}>
               <Button
                 block
                 rounded
                 style={styles.button}
-                onPress={() => this.props.navigation.navigate('ListApi')}
+                onPress={this.createUser}
               >
                 <Text style={styles.buttonText}>Sign Up</Text>
               </Button>

@@ -6,6 +6,8 @@ import Dashboard from './view/Dashboard';
 import MyTab from './TabManager';
 import Sidebar from './Sidebar.js';
 import AddDosen from './api/dosen/AddDosen';
+import AddTugas from './api/tugas/AddTugas';
+import AddMatkul from './api/matkul/AddMatkul';
 import ViewDosen from './api/ViewDosen';
 
 const Screens = DrawerNavigator({
@@ -14,6 +16,12 @@ const Screens = DrawerNavigator({
   },
   AddDosen: {
     screen: AddDosen
+  },
+  AddTugas: {
+    screen: AddTugas
+  },
+  AddMatkul: {
+    screen: AddMatkul
   },
   ViewDosen: {
     screen: ViewDosen

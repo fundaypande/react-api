@@ -8,9 +8,14 @@ import {
   Text,
   TextInput,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
  } from 'react-native';
  import { Button } from 'native-base';
+import * as firebase from 'firebase';
+import config from '../Firebase';
+
+firebase.initializeApp(config);
 
 export default class Login extends Component {
 
@@ -18,8 +23,38 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      city: ''
+      username: '',
+      password: ''
     };
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+      if (firebaseUser) {
+        this.props.navigation.navigate('Dashboard');
+      } else {
+        Alert.alert('Your not Login');
+      }
+    });
+  }
+
+  loginUser = () => {
+    const username = this.state.username;
+    const password = this.state.password;
+    const auth = firebase.auth();
+
+    const promise = auth.signInWithEmailAndPassword(username, password);
+    promise.catch(e => {
+      if (e) {
+        Alert.alert(e.code, e.message);
+      } else {
+        this.props.navigation.navigate('Dashboard');
+      }
+    });
+
+    //login seccess
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+      if (firebaseUser) {
+        this.props.navigation.navigate('Dashboard');
+      }
+    });
   }
 
   render() {
@@ -52,11 +87,13 @@ export default class Login extends Component {
               underlineColorAndroid="transparent"
               style={myButton('rgba(255,255,255,0.5)')}
               placeholder="Username"
+              onChangeText={TextInputValue => this.setState({ username: TextInputValue })}
             />
             <TextInput
               underlineColorAndroid="transparent"
               style={myButton('rgba(255,255,255,0.5)')}
               placeholder="Password"
+              onChangeText={TextInputValue => this.setState({ password: TextInputValue })}
               secureTextEntry
             />
             <View style={{ height: 60 }}>
@@ -64,7 +101,7 @@ export default class Login extends Component {
                 block
                 rounded
                 style={styles.button}
-                onPress={() => this.props.navigation.navigate('Dashboard')}
+                onPress={this.loginUser}
               >
                 <Text style={styles.buttonText}>Sign In</Text>
               </Button>

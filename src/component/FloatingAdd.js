@@ -8,7 +8,7 @@ import { Icon } from 'native-base';
 const FloatAdd = props => (
       <View>
         <TouchableOpacity onPress={props.onPress} style={styles.floating}>
-          <Icon name={'ios-add'} style={{ fontSize: 50, color: '#ffffff' }} />
+          <Icon name={props.icon} style={{ fontSize: 30, color: '#ffffff' }} />
         </TouchableOpacity>
       </View>
 );

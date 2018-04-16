@@ -27,8 +27,8 @@ export default class Login extends Component {
   'Tambah Data',
   '',
       [
-        { text: 'Tugas', onPress: () => console.log('Ask me later pressed') },
-        { text: 'Mata Kuliah', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+        { text: 'Tugas', onPress: () => this.props.navigation.navigate('AddTugas') },
+        { text: 'Mata Kuliah', onPress: () => this.props.navigation.navigate('AddMatkul') },
         { text: 'Dosen', onPress: () => this.props.navigation.navigate('AddDosen') },
       ],
       { cancelable: true }
@@ -38,10 +38,6 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <StatusBar
-          backgroundColor={'transparent'}
-          translucent
-      />
       <StatusBar
           backgroundColor={'transparent'}
           translucent
